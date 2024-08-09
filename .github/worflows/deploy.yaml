@@ -1,0 +1,46 @@
+name: Build and Deploy
+env:
+  CI: false
+  GITHUB_USERNAME: ${{ github.repository_owner }}
+  REACT_APP_GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }} # This is automatically set by Github Actions
+  USE_GITHUB_DATA: "true"
+  REGION: "ap-south-1"
+on:
+  push:
+    branches:
+      - production
+  schedule:
+    - cron: "0 12 * * 1" # see https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
+
+      - name: Install and Build 🔧 # Build the Project
+        uses: actions/setup-node@v2 # Change from actions/checkout@master to actions/setup-node@v2
+        with:
+          node-version: "20.10.0" # Add the Node.js version you want to use
+      - run: npm ci
+      - run: npm run build
+      - name: Sync to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "ap-south-1" # optional: defaults to us-east-1
+          SOURCE_DIR: "build"
+      - name: Invalidate CloudFront 🫡
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
+          PATHS: "/*"
+          AWS_REGION: "ap-south-1"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
