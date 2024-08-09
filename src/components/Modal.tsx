@@ -4,7 +4,7 @@ type ModalProps = {
   /** Not yet implemented in the modal wont be helpful */
   onClose?: () => void;
   children: ReactNode;
-  /**  Optional prop to control the visibility of the modal */
+  /**  Optional prop to control the visibility of the modal  */
   isOpen?: boolean;
 };
 
