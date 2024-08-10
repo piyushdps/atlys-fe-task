@@ -19,6 +19,7 @@ const CreatePostForm = ({ handleAddPost }: CreatePostFormProps) => {
   const [postData, setPostData] = useState("");
 
   const handleCreatePostForm = () => {
+    if (!postData) return;
     const timestamp = new Date().toISOString();
     const user = "Jane";
 

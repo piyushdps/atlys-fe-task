@@ -26,9 +26,12 @@ const LoginAndRegister = ({
         : (passwordInputRef.current.type = "password");
     }
   };
+  const userNameInputRef = useRef<HTMLInputElement>(null);
+  const [error, setError] = useState<boolean>(false);
 
   const [workingMode, setWorkingMode] = useState<LoginMode>(mode);
   useEffect(() => {
+    setError(false);
     if (!manageUrlHash) return;
     if (workingMode === LoginMode.LOGIN) {
       window.history.replaceState(
@@ -43,7 +46,22 @@ const LoginAndRegister = ({
         window.location.pathname + "#register"
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [workingMode]);
+
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const userName = userNameInputRef.current?.value;
+    const password = passwordInputRef.current?.value;
+    const email = passwordInputRef.current?.value;
+    if (workingMode === LoginMode.LOGIN && (!email || !password))
+      return setError(true);
+    if (
+      workingMode === LoginMode.REGISTER &&
+      (!email || !userName || !password)
+    )
+      return setError(true);
+  };
 
   if (workingMode === LoginMode.LOGIN)
     return (
@@ -55,7 +73,7 @@ const LoginAndRegister = ({
           Log into your account
         </h1>
 
-        <form className="mt-6 space-y-6">
+        <form className="mt-6 space-y-6" onSubmit={onSubmitHandler}>
           <div>
             <label
               htmlFor="email"
@@ -64,6 +82,7 @@ const LoginAndRegister = ({
               Email or Username
             </label>
             <input
+              ref={userNameInputRef}
               type="text"
               id="email"
               className="w-full mt-1 p-2 bg-transparent border border-[#35373B] text-white rounded-md "
@@ -106,7 +125,11 @@ const LoginAndRegister = ({
             Login now
           </button>
         </form>
-
+        {error && (
+          <p className="text-sm text-red-400">
+            Invalid username or password. Please try again.
+          </p>
+        )}
         <p className="mt-3 text-sm text-gray-400">
           Not registered yet?{" "}
           <span
@@ -126,7 +149,7 @@ const LoginAndRegister = ({
         Create an account to continue
       </h1>
 
-      <form className="mt-6 space-y-6">
+      <form className="mt-6 space-y-6" onSubmit={onSubmitHandler}>
         <div>
           <label
             htmlFor="email"
@@ -187,7 +210,11 @@ const LoginAndRegister = ({
           Continue
         </button>
       </form>
-
+      {error && (
+        <p className="text-sm text-red-400">
+          Invalid username or password. Please try again.
+        </p>
+      )}
       <p className="mt-3 text-sm text-gray-400">
         Already have a account?{" "}
         <span
