@@ -8,10 +8,10 @@ This repo contains the code for the FE role assessment for Atlys.
     - JS and CSS Libraries : Tailwind, Dayjs, React Emoji Picker
 
 ## Pages
-    - [/posts](https://atlys.piyusharyan.xyz/posts) : To see the list of posts, create new post.
-    - [/login](https://atlys.piyusharyan.xyz/login) : To view login and register screen
-    - [/posts#login](https://atlys.piyusharyan.xyz/posts#login) : To view the login popup 
-    - [/posts#register](https://atlys.piyusharyan.xyz/posts#register) : To view the register popup 
+ - [/posts](https://atlys.piyusharyan.xyz/posts) : To see the list of posts, create new post.
+ - [/login](https://atlys.piyusharyan.xyz/login) : To view login and register screen
+ - [/posts#login](https://atlys.piyusharyan.xyz/posts#login) : To view the login popup 
+ - [/posts#register](https://atlys.piyusharyan.xyz/posts#register) : To view the register popup 
 
 ## How to run the app? You ask
     Eazzy peasy I say.
