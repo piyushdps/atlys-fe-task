@@ -8,7 +8,7 @@ type ModalProps = {
   isOpen?: boolean;
 };
 
-const Modal = ({ children, isOpen = true }: ModalProps) => {
+const Modal = ({ children, isOpen = true, onClose }: ModalProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,10 +27,12 @@ const Modal = ({ children, isOpen = true }: ModalProps) => {
       className={`
     absolute inset-0 z-50 flex justify-center items-center overflow-y-hidden backdrop-blur
     `}
+      onClick={onClose}
     >
       <div
         className="flex flex-col relative items-center max-h-full max-w-full w-[700px] h-[600px] overflow-hidden rounded-lg"
         ref={containerRef}
+        onClick={(e) => e.stopPropagation()}
       >
         {children}
       </div>

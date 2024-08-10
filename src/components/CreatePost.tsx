@@ -2,6 +2,7 @@ import EmojiPicker, { Theme } from "emoji-picker-react";
 import { useState } from "react";
 import Emoji from "react-emoji-render";
 import { Post } from "./Post";
+import { RegisterOptions, useForm } from "react-hook-form";
 
 type CreatePostFormProps = {
   /** Function to add a new post can be sent to the request handler */
@@ -13,12 +14,33 @@ type CreatePostFormProps = {
  * @param param0
  * @description CreatePostForm component to create a new post
  */
+
+type NewPostForm = {
+  postData: string;
+};
+
 const CreatePostForm = ({ handleAddPost }: CreatePostFormProps) => {
   const [showPicker, setShowPicker] = useState(false);
   const [emoji, setEmoji] = useState("💬");
-  const [postData, setPostData] = useState("");
 
-  const handleCreatePostForm = () => {
+  const validations: {
+    [T in keyof NewPostForm]: RegisterOptions<NewPostForm, T>;
+  } = {
+    postData: {
+      required: "Post data is required",
+    },
+  };
+
+  const { register, handleSubmit } = useForm<NewPostForm>({
+    defaultValues: {
+      postData: "",
+    },
+    mode: "onTouched",
+  });
+
+  const handleCreatePostForm = handleSubmit((data: NewPostForm) => {
+    const postData = data.postData;
+    if (!postData) return;
     const timestamp = new Date().toISOString();
     const user = "Jane";
 
@@ -30,10 +52,10 @@ const CreatePostForm = ({ handleAddPost }: CreatePostFormProps) => {
       text: postData,
       timestamp,
     });
-  };
+  });
 
   return (
-    <div>
+    <form onSubmit={handleCreatePostForm}>
       <div className="bg-[#27292D] p-4 rounded-lg w-full mx-auto mb-4">
         <div className="mb-4">
           <label
@@ -77,7 +99,7 @@ const CreatePostForm = ({ handleAddPost }: CreatePostFormProps) => {
               placeholder="How are you feeling today?"
               className="bg-transparent w-full focus:outline-none pt-3 resize-none"
               aria-label="Write your post"
-              onChange={(e) => setPostData(e.target.value)}
+              {...register("postData", validations.postData)}
             />
           </div>
         </div>
@@ -85,13 +107,13 @@ const CreatePostForm = ({ handleAddPost }: CreatePostFormProps) => {
           <button
             className="w-[111px] bg-[#4A96FF]  py-2 rounded-sm active:scale-95"
             aria-label="Post your status"
-            onClick={handleCreatePostForm}
+            type="submit"
           >
             Post
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

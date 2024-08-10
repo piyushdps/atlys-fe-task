@@ -12,8 +12,8 @@ const PostList = () => {
 
   const handleModalClose = () => {
     setIsModalVisible(false);
+    window.history.pushState(null, document.title, window.location.pathname);
     // Removes the hash fragment from the URL
-    window.history.replaceState("", document.title, window.location.pathname);
   };
 
   const [posts, setPosts] = useState<Post[]>([
@@ -63,7 +63,7 @@ const PostList = () => {
             <div className="greeting mt-[69px] text-[28px] font-medium">
               Hello {user}
             </div>
-            <div className="sub-heading mt-3 text-[#7F8084] font-normal w-[580px] h-6 mb-10">
+            <div className="sub-heading mt-3 text-[#7F8084] font-normal max-w-[580px] h-6 mb-10">
               How are you doing today? Would you like to share something with
               the community 🤗
             </div>
