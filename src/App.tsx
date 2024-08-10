@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { redirect } from "react-router-dom";
 import "./App.css";
-import Login from "./components/Login";
-import PostList from "./components/PostList";
+import Login from "./pages/Login";
+import PostPage from "./pages/PostPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,7 +18,7 @@ function App() {
     },
     {
       path: "/posts",
-      element: <PostList />,
+      element: <PostPage />,
     },
     {
       path: "*",

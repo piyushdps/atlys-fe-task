@@ -16,7 +16,7 @@ type LoginAndRegisterProps = {
   manageUrlHash?: boolean;
 };
 
-const LoginAndRegister = ({
+const Auth = ({
   mode = LoginMode.LOGIN,
   manageUrlHash = true,
 }: LoginAndRegisterProps) => {
@@ -359,4 +359,4 @@ function LoginForm({
   );
 }
 
-export default LoginAndRegister;
+export default Auth;
