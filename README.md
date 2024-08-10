@@ -15,6 +15,7 @@ This repo contains the code for the FE role assessment for Atlys.
 
 ## How to run the app? You ask
     Eazzy peasy I say.
+    
     ```bash
     # Install the required dependencies 
     npm install
