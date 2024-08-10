@@ -14,7 +14,7 @@ This repo contains the code for the FE role assessment for Atlys.
  - [/posts#register](https://atlys.piyusharyan.xyz/posts#register) : To view the register popup 
 
 ## How to run the app? You ask
-    Eazzy peasy I say.
+Eazzy peasy I say.
     
 ```bash
 # Install the required dependencies 
