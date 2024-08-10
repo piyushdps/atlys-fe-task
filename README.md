@@ -14,17 +14,18 @@ This repo contains the code for the FE role assessment for Atlys.
  - [/posts#register](https://atlys.piyusharyan.xyz/posts#register) : To view the register popup 
 
 ## How to run the app? You ask
-    Eazzy peasy I say.
-    ```bash
-    # Install the required dependencies 
-    npm install
+Eazzy peasy I say.
+    
+```bash
+# Install the required dependencies 
+npm install
 
-    # Running locally 
-    npm run dev
+# Running locally 
+npm run dev
 
-    # Building into a static app 
-    npm run build 
-    ```
+# Building into a static app 
+npm run build 
+```
 ## How did I deploy it?? 🧐
     1. Just wrote a simple GH workflow to build this lil code to life. 
     2. Pushes to a s3 located somewhere in the ☁️

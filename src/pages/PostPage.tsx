@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import CreatePostForm from "./CreatePost";
-import Posts, { Post } from "./Post";
+import CreatePostForm from "../components/CreatePost";
+import Posts, { Post } from "../components/Post";
 
 import { useLocation } from "react-router-dom";
-import Modal from "./Modal";
-import LoginAndRegister, { LoginMode } from "./LoginAndRegister";
-const PostList = () => {
+import Modal from "../components/Modal";
+import Auth, { LoginMode } from "../components/Auth";
+
+const PostPage = () => {
   const { user } = { user: "Jane" };
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -55,7 +56,7 @@ const PostList = () => {
   return (
     <>
       <Modal isOpen={isModalVisible} onClose={handleModalClose}>
-        <LoginAndRegister mode={loginPopupMode} />
+        <Auth mode={loginPopupMode} />
       </Modal>
       <div>
         <div className=" flex justify-center min-h-screen ">
@@ -82,4 +83,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default PostPage;
