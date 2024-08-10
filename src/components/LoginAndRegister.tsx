@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import EyeSvg from "../assets/eye.svg";
 import { RegisterOptions, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export const enum LoginMode {
   "LOGIN" = "LOGIN",
@@ -106,7 +107,7 @@ function RegisterJsx({
       required: "Username is required ",
     },
   };
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -120,8 +121,8 @@ function RegisterJsx({
     mode: "onTouched",
   });
 
-  const onSubmitHandler = handleSubmit(async (data) => {
-    console.log(data);
+  const onSubmitHandler = handleSubmit(() => {
+    navigate("/posts");
   });
 
   const { ref, ...rest } = register("password", validations.password);
@@ -266,9 +267,9 @@ function LoginForm({
     },
     mode: "onTouched",
   });
-
-  const onSubmitHandler = handleSubmit(async (data) => {
-    console.log(data);
+  const navigate = useNavigate();
+  const onSubmitHandler = handleSubmit(() => {
+    navigate("/posts");
   });
 
   const { ref, ...rest } = register("password", validations.password);
