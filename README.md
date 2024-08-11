@@ -13,6 +13,11 @@ This repo contains the code for the FE role assessment for Atlys.
  - [/posts#login](https://atlys.piyusharyan.xyz/posts#login) : To view the login popup 
  - [/posts#register](https://atlys.piyusharyan.xyz/posts#register) : To view the register popup 
 
+
+## ID & Password to test things out 
+ID ->  `root` 
+Password -> `HarryPotter7`
+  
 ## How to run the app? You ask
 Eazzy peasy I say.
     
