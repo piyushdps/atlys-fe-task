@@ -51,6 +51,7 @@ const CreatePostForm = ({ handleAddPost }: CreatePostFormProps) => {
       emoji,
       text: postData,
       timestamp,
+      isEdited: false,
     });
   });
 

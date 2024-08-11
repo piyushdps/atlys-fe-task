@@ -9,6 +9,7 @@ export type Post = {
   profilePic: string;
   timestamp: string;
   commentCount: number;
+  isEdited: boolean;
 };
 
 /**
@@ -26,7 +27,7 @@ const Post = (props: Post) => {
               <img
                 src={props.profilePic}
                 alt="PP"
-                className="rounded-full w-11 h-11"
+                className="rounded-full w-11 h-11 object-cover"
               />
               <div>
                 <div className="text-white font-medium ml-3">
@@ -34,6 +35,7 @@ const Post = (props: Post) => {
                 </div>
                 <div className="text-gray-400 text-sm ml-3">
                   {timeAgo(props.timestamp)}
+                  {props.isEdited && " • Edited"}
                 </div>
               </div>
             </div>
