@@ -19,20 +19,22 @@ const PostPage = () => {
 
   const [posts, setPosts] = useState<Post[]>([
     {
-      emoji: ";)",
+      emoji: "👋",
       text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
-      userName: "Piyush Aryan",
-      profilePic: "https://randomuser.me/api/portraits/men/1.jpg",
-      timestamp: "ISO(2021-09-01T00:00:00Z)",
-      commentCount: 2,
+      userName: "Theresa Webb",
+      profilePic: "/profile1.png",
+      timestamp: "2024-08-09T00:00:00Z",
+      commentCount: 24,
+      isEdited: false,
     },
     {
-      emoji: ":P",
+      emoji: "😞",
       text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
-      userName: "Piyush Aryan",
-      profilePic: "https://randomuser.me/api/portraits/men/2.jpg",
-      timestamp: "2",
+      userName: "Marvin McKinney",
+      profilePic: "/profile2.png",
+      timestamp: "2024-08-01T00:00:00Z",
       commentCount: 2,
+      isEdited: true,
     },
   ]);
 
